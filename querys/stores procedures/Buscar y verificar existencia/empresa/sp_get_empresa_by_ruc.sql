@@ -13,6 +13,7 @@ BEGIN
         nombre_comercial,
         email,
         telefono,
+        departamento,
         ciudad,
         direccion,
         igv,
