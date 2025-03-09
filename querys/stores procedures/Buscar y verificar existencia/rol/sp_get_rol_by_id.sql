@@ -8,7 +8,8 @@ BEGIN
     
     SELECT 
         id_rol,
-        nombre
+        nombre,
+        id_empresa
     FROM rol
     WHERE id_rol = @id_rol;
 END;

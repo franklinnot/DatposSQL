@@ -15,7 +15,8 @@ BEGIN
         direccion,
         foto,
         estado,
-        id_rol
+        id_rol,
+        id_empresa
     FROM usuario
     WHERE dni = @dni;
 END;

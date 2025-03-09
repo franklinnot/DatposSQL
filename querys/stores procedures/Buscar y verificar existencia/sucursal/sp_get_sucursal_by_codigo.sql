@@ -17,7 +17,8 @@ BEGIN
         direccion,
         telefono,
         estado,
-        id_almacen
+        id_almacen,
+        id_empresa
     FROM sucursal
     WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa;
 END;

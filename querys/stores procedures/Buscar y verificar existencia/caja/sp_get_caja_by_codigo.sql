@@ -13,7 +13,8 @@ BEGIN
         codigo,
         nombre,
         estado,
-        id_sucursal
+        id_sucursal,
+        id_empresa
     FROM caja
     WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa;
 END;

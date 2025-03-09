@@ -16,7 +16,8 @@ BEGIN
         direccion,
         telefono,
         estado,
-        id_almacen
+        id_almacen,
+        id_empresa
     FROM sucursal
     WHERE id_sucursal = @id_sucursal;
 END;

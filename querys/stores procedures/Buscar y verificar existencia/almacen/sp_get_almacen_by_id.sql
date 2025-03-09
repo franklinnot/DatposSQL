@@ -14,7 +14,8 @@ BEGIN
         departamento,
         ciudad,
         direccion,
-        estado
+        estado,
+        id_empresa
     FROM almacen
     WHERE LOWER(id_almacen) = LOWER(@id_almacen);
 END;
