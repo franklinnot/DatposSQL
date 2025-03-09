@@ -1,7 +1,7 @@
 
 
 
-CREATE OR ALTER PROCEDURE sp_get_sucursal_by_id_empresa
+CREATE OR ALTER PROCEDURE sp_get_sucursales_by_id_empresa
     @id_empresa BIGINT
 AS
 BEGIN
@@ -21,10 +21,7 @@ BEGIN
     WHERE id_empresa = @id_empresa;
 END;
 
-EXEC sp_get_sucursal_by_id_empresa @id_empresa = 1;
+EXEC sp_get_sucursales_by_id_empresa @id_empresa = 1;
 
 SELECT *
 FROM sucursal;
-
-
-
