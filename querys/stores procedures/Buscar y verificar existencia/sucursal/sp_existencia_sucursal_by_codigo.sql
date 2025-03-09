@@ -8,7 +8,7 @@ BEGIN
     SET NOCOUNT ON;
     IF EXISTS(SELECT 1 FROM sucursal WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa)
     BEGIN
-        SELECT 'true' AS 'existe'
+        SELECT 'true' AS 'verificar'
     END
     ELSE
     BEGIN

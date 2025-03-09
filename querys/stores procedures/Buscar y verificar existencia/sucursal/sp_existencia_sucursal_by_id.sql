@@ -7,7 +7,7 @@ BEGIN
     SET NOCOUNT ON;
     IF EXISTS(SELECT 1 FROM sucursal WHERE id_sucursal = @id_sucursal)
     BEGIN
-        SELECT 'true' AS 'existe'
+        SELECT 'true' AS 'verificar'
     END
     ELSE
     BEGIN
