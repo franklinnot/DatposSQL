@@ -1,30 +1,16 @@
 
-select * from pago_tarifa;
-select * from sucursal;
-select * from usuario;
-
-update usuario
-set nombre = 'franklin groove'
-
-update empresa
-set razon_social = 'Inner Groove'
-
---update acceso
---set nombre = 'Home',
---	ruta = 'home'
---where id_acceso = 1
-
-
+-- tablas de la base de datos
 SELECT '''' + TABLE_NAME + '''' + ',' AS TABLE_NAME
 FROM INFORMATION_SCHEMA.TABLES
 ORDER BY TABLE_NAME;
 
+-- columnas de una tabla
 SELECT '''' + COLUMN_NAME + '''' + ',' AS COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'sucursal';
 
 
--- tablas con la columna 'id_empresa'
+-- tablas con la columna '--'
 SELECT DISTINCT '''' + TABLE_NAME + ''''  + ',' AS TABLE_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE COLUMN_NAME = 'ciudad'
@@ -41,7 +27,7 @@ WHERE tc.CONSTRAINT_TYPE = 'FOREIGN KEY'
 ORDER BY TABLE_NAME;
 
 
--- tablas que no tienen id_empresa
+-- tablas que no tienen la columna '---'
 SELECT TABLE_NAME
 FROM (
     SELECT DISTINCT 
