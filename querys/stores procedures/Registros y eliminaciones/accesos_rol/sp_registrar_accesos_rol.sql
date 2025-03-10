@@ -61,10 +61,10 @@ DECLARE @ListaAccesos ud_accesos_rol;
 -- Insertar datos en la variable tipo tabla
 INSERT INTO @ListaAccesos (id_acceso) 
 VALUES 
-(12),
-(13),
-(14),
-(15);
+(17),
+(18),
+(19),
+(20);
 
 EXEC sp_registrar_accesos_rol @id_rol = 1, @id_empresa = 1, @accesos = @ListaAccesos;
 
