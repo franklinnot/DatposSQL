@@ -1,10 +1,10 @@
 
 
 
-
-CREATE TYPE ud_accesos_rol AS TABLE (
-    id_acceso BIGINT
-);
+-- Objeto de tipo tabla usado para registros masivos
+-- CREATE TYPE ud_accesos_rol AS TABLE (
+--     id_acceso BIGINT
+-- );
 
 GO
 
