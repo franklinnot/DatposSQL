@@ -35,6 +35,7 @@ BEGIN
     END TRY
     BEGIN CATCH
         ROLLBACK TRANSACTION;
+        EXEC sp_eliminar_almacen_by_id @id_almacen = @id_almacen;
         THROW;
     END CATCH;
 END;

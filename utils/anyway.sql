@@ -11,14 +11,11 @@
 
 
 /*
-Almacenes
-warehouses/new
+Roles
+roles/new
 
 nombre
-codigo
-departamento
-ciudad
-direccion
+
 id_empresa => jalar este dato de inertia
 
 */
@@ -27,3 +24,4 @@ select * from empresa;
 select * from sucursal;
 select * from caja;
 select * from almacen;
+select * from rol;
