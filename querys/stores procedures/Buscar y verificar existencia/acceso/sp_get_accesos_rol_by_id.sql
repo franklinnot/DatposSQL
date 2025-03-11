@@ -1,6 +1,6 @@
 
 
-CREATE OR ALTER PROCEDURE sp_get_accesos_rol_by_id
+CREATE OR ALTER PROCEDURE sp_get_accesos_by_id_rol
     @id_rol BIGINT
 AS
 BEGIN
@@ -12,5 +12,4 @@ BEGIN
     WHERE ar.id_rol = @id_rol;
 END;
 
-EXEC sp_get_accesos_rol_by_id @id_rol = 1;
-
+EXEC sp_get_accesos_by_id_rol @id_rol = 1;
