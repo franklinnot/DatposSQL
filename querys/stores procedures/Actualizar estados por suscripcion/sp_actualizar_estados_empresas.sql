@@ -70,3 +70,6 @@ BEGIN
     CLOSE change_cursor;
     DEALLOCATE change_cursor;
 END;
+
+
+EXEC sp_actualizar_estados_empresas;

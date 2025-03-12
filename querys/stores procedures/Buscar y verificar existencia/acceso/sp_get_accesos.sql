@@ -8,5 +8,8 @@ BEGIN
     FROM acceso a;
 END;
 
+-------------------------
+
 EXEC sp_get_accesos;
 
+SELECT * FROM acceso;

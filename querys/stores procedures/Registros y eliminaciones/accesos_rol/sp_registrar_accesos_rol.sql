@@ -71,7 +71,7 @@ EXEC sp_registrar_accesos_rol @id_rol = 1, @id_empresa = 1, @accesos = @ListaAcc
 -------------------------
 
 -- accesos que un rol tiene
-EXEC sp_get_accesos_rol_by_id @id_rol = 1;
+EXEC sp_get_accesos_by_id_rol @id_rol = 1;
 
 -- accesos que un rol no tiene
 SELECT ac.id_acceso, ac.nombre

@@ -21,3 +21,5 @@ BEGIN
     INNER JOIN empresa e ON e.id_empresa = p.id_empresa;
 END;
 GO
+
+EXEC sp_actualizar_estados_pagos_tarifa;
