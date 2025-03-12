@@ -61,16 +61,37 @@ DECLARE @ListaAccesos ud_accesos_rol;
 INSERT INTO @ListaAccesos
     (id_acceso)
 VALUES
-    (1);
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (6),
+    (7),
+    (8),
+    (9),
+    (10),
+    (11),
+    (12),
+    (13),
+    (14),
+    (15),
+    (16),
+    (17),
+    (18),
+    (19),
+    (20),
+    (21),
+    (22);
 
 EXEC sp_registrar_rol 
-    @nombre = 'Vendedor',
+    @nombre = 'Administrador',
     @id_empresa = 1,
     @accesos = @ListaAccesos;
 -------------------------
 
 -- accesos que un rol tiene
-EXEC sp_get_accesos_rol_by_id @id_rol = 4;
+EXEC sp_get_accesos_by_id_rol @id_rol = 1;
 
 
 SELECT * from rol;
