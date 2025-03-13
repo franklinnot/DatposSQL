@@ -6,8 +6,6 @@
 --     id_acceso BIGINT
 -- );
 
-GO
-
 CREATE OR ALTER PROCEDURE sp_registrar_accesos_rol
     @id_rol BIGINT,
     @id_empresa BIGINT,
@@ -15,43 +13,28 @@ CREATE OR ALTER PROCEDURE sp_registrar_accesos_rol
 AS
 BEGIN
     SET NOCOUNT ON;
-    DECLARE @rowCount INT;
-    BEGIN TRANSACTION;
     BEGIN TRY
         -- Insertar los accesos recibidos en la tabla acceso_rol en base al rol
         INSERT INTO acceso_rol
         (id_acceso, id_rol, id_empresa)
-    SELECT id_acceso, @id_rol, @id_empresa
-    FROM @accesos a
-    WHERE NOT EXISTS (
+        SELECT id_acceso, @id_rol, @id_empresa
+        FROM @accesos a
+        WHERE NOT EXISTS (
             SELECT 1
-    FROM acceso_rol ar
-    WHERE ar.id_acceso = a.id_acceso
-        AND ar.id_rol = @id_rol
-        AND ar.id_empresa = @id_empresa
+            FROM acceso_rol ar
+            WHERE ar.id_acceso = a.id_acceso
+                AND ar.id_rol = @id_rol
+                AND ar.id_empresa = @id_empresa
         );
-
-        -- Obtener el número de filas afectadas
-        SET @rowCount = @@ROWCOUNT;
-
-        -- Verificar si se insertaron filas
-        IF @rowCount > 0
-        BEGIN
-        COMMIT TRANSACTION;
-        SELECT 'true' AS verificar;
-    END
-        ELSE
-        BEGIN
-        ROLLBACK TRANSACTION;
-        SELECT 'false' AS verificar;
-    END
+        -- No hacer COMMIT o ROLLBACK aquí
     END TRY
     BEGIN CATCH
-        ROLLBACK TRANSACTION;
-        SELECT 'false' AS verificar;
-        THROW;
+        -- No hacer ROLLBACK aquí, pero asegurarse de que la excepción se propague
+        ;THROW; -- Punto y coma añadido antes de THROW
     END CATCH;
 END;
+
+GO
 
 -------------------------
 
