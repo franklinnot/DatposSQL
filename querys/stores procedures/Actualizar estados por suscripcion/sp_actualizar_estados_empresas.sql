@@ -9,8 +9,8 @@ BEGIN
     -- Tabla temporal para almacenar los cambios en el estado de cada empresa.
     DECLARE @Changes TABLE (
          id_empresa BIGINT,
-         OldEstado INT,
-         NewEstado INT
+         OldEstado CHAR(1),
+         NewEstado CHAR(1)
     );
 
     -- Se actualiza el estado de cada empresa según los registros asociados en pago_tarifa.
@@ -21,28 +21,28 @@ BEGIN
             SELECT 1 
             FROM pago_tarifa p 
             WHERE p.id_empresa = e.id_empresa 
-              AND p.estado = 1
-        ) THEN 1
+              AND p.estado = '1'
+        ) THEN '1'
 
         -- 2. Pendiente de pago: No tiene pagos activos, pero tiene al menos uno en periodo de gracia (estado 2).
         WHEN EXISTS (
             SELECT 1 
             FROM pago_tarifa p 
             WHERE p.id_empresa = e.id_empresa 
-              AND p.estado = 2
-        ) THEN 2
+              AND p.estado = '2'
+        ) THEN '2'
 
         -- 3. Modo prueba: No tiene pagos activos ni en periodo de gracia, pero tiene al menos uno pendiente de activación (estado 3).
         WHEN EXISTS (
             SELECT 1 
             FROM pago_tarifa p 
             WHERE p.id_empresa = e.id_empresa 
-              AND p.estado = 3
-			  AND e.estado = 3 -- La empresa debe estar en modo prueba para poder mantenerse en este estado
-        ) THEN 3
+              AND p.estado = '3'
+			  AND e.estado = '3' -- La empresa debe estar en modo prueba para poder mantenerse en este estado
+        ) THEN '3'
 
         -- 4. Inhabilitado: No se encontró ningún registro válido (estados 1, 2 o 3).
-        ELSE 0
+        ELSE '0'
 	END
     OUTPUT deleted.id_empresa, deleted.estado, inserted.estado 
            INTO @Changes (id_empresa, OldEstado, NewEstado)
@@ -54,7 +54,7 @@ BEGIN
     DECLARE change_cursor CURSOR LOCAL FAST_FORWARD FOR
         SELECT id_empresa 
         FROM @Changes
-        WHERE OldEstado = 3 AND NewEstado <> 3;
+        WHERE OldEstado = '3' AND NewEstado <> '3';
 
     OPEN change_cursor;
     FETCH NEXT FROM change_cursor INTO @id_empresa;
