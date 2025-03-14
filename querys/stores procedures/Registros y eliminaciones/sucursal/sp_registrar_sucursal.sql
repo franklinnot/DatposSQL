@@ -2,12 +2,12 @@
 
 
 CREATE OR ALTER PROCEDURE sp_registrar_sucursal
-    @codigo NVARCHAR(128),
-    @nombre NVARCHAR(128),
-    @departamento NVARCHAR(128) = NULL,
-    @ciudad NVARCHAR(128) = NULL,
+    @codigo NVARCHAR(24),
+    @nombre NVARCHAR(64),
+    @departamento NVARCHAR(64) = NULL,
+    @ciudad NVARCHAR(64) = NULL,
     @direccion NVARCHAR(255) = NULL,
-    @telefono NVARCHAR(128) = NULL,
+    @telefono NVARCHAR(32) = NULL,
     @id_almacen BIGINT,
     @id_empresa BIGINT
 AS

@@ -6,7 +6,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_registrar_rol
-    @nombre NVARCHAR(128),
+    @nombre NVARCHAR(64),
     @accesos NVARCHAR(MAX),
     -- Se espera un JSON con un arreglo de objetos que contengan "id_acceso"
     @id_empresa BIGINT

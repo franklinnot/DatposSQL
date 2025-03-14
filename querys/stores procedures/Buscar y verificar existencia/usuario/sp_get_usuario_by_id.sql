@@ -12,7 +12,6 @@ BEGIN
         email,
         created_at,
         nombre,
-        direccion,
         foto,
         estado,
         id_rol,

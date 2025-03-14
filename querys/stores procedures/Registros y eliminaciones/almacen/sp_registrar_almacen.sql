@@ -1,10 +1,10 @@
 
 
 CREATE OR ALTER PROCEDURE sp_registrar_almacen
-    @codigo NVARCHAR(128),
-    @nombre NVARCHAR(255),
-    @departamento NVARCHAR(128) = NULL,
-    @ciudad NVARCHAR(128) = NULL,
+    @codigo NVARCHAR(24),
+    @nombre NVARCHAR(128),
+    @departamento NVARCHAR(64) = NULL,
+    @ciudad NVARCHAR(64) = NULL,
     @direccion NVARCHAR(255) = NULL,
     @id_empresa BIGINT
 AS

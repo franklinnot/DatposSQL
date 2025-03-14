@@ -1,7 +1,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_existencia_rol_by_nombre
-    @nombre NVARCHAR(128),
+    @nombre NVARCHAR(64),
     @id_empresa BIGINT
 AS
 BEGIN

@@ -2,7 +2,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_get_almacen_by_codigo
-    @codigo NVARCHAR(128),
+    @codigo NVARCHAR(24),
     @id_empresa BIGINT
 AS
 BEGIN

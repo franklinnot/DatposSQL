@@ -1,7 +1,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_get_empresa_by_ruc
-    @ruc VARCHAR(128)
+    @ruc CHAR(11)
 AS
 BEGIN
     SET NOCOUNT ON;

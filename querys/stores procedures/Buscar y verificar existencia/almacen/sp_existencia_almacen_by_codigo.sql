@@ -1,7 +1,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_existencia_almacen_by_codigo
-    @codigo NVARCHAR(128),
+    @codigo NVARCHAR(24),
     @id_empresa BIGINT
 AS
 BEGIN

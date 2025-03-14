@@ -1,8 +1,8 @@
 
 
 CREATE OR ALTER PROCEDURE sp_registrar_caja
-    @codigo NVARCHAR(128),
-    @nombre NVARCHAR(255) = NULL,
+    @codigo NVARCHAR(24),
+    @nombre NVARCHAR(128) = NULL,
     @id_sucursal BIGINT,
     @id_empresa BIGINT
 AS

@@ -1,7 +1,7 @@
 
 
 CREATE OR ALTER PROCEDURE sp_get_usuario_by_dni
-    @dni NVARCHAR(100)
+    @dni CHAR(8)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -12,7 +12,6 @@ BEGIN
         email,
         created_at,
         nombre,
-        direccion,
         foto,
         estado,
         id_rol,
