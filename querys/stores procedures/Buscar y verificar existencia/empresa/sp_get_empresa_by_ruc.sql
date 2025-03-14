@@ -18,7 +18,6 @@ BEGIN
         direccion,
         igv,
         monto_maximo_boleta,
-        numero_tributario,
         cantidad_sucursales, 
         cantidad_usuarios,
         sucursales_registradas,
