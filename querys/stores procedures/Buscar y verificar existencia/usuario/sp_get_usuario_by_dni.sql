@@ -13,7 +13,6 @@ BEGIN
         email,
         created_at,
         nombre,
-        foto,
         estado,
         id_rol,
         id_empresa

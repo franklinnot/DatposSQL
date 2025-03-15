@@ -15,9 +15,25 @@ BEGIN
     SET NOCOUNT ON;
 
     DECLARE @nuevo_id INT;
-
+    DECLARE @sucursales_registradas INT, @cantidad_sucursales INT;
     BEGIN TRY
         BEGIN TRANSACTION;
+
+        -- Obtener la cantidad de sucursales registradas y el límite
+        SELECT
+            @sucursales_registradas = ISNULL(sucursales_registradas, 0),
+            @cantidad_sucursales = ISNULL(cantidad_sucursales, 0)
+        FROM empresa
+        WHERE id_empresa = @id_empresa;
+
+        -- Si la empresa no puede registrar más sucursales, detener el proceso
+        IF @sucursales_registradas >= @cantidad_sucursales
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Detener la ejecución
+            RETURN;
+        END;
+
 
         INSERT INTO sucursal (codigo, nombre, departamento, ciudad, direccion, telefono, estado, id_almacen, id_empresa)
         VALUES (@codigo, @nombre, @departamento, @ciudad, @direccion, @telefono, 1, @id_almacen, @id_empresa);
