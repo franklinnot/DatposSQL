@@ -20,7 +20,7 @@ BEGIN
         id_almacen,
         id_empresa
     FROM sucursal
-    WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa;
+    WHERE codigo = @codigo AND id_empresa = @id_empresa;
 END;
 
 EXEC sp_get_sucursal_by_codigo @codigo = 'TPR', @id_empresa = 1;

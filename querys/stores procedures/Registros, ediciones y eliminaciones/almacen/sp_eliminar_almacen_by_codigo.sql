@@ -10,7 +10,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        DELETE FROM almacen WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa;
+        DELETE FROM almacen WHERE codigo = @codigo AND id_empresa = @id_empresa;
 
         IF @@ROWCOUNT > 0
         BEGIN

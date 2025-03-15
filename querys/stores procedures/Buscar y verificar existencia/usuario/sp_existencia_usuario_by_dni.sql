@@ -6,7 +6,7 @@ CREATE OR ALTER PROCEDURE sp_existencia_usuario_by_dni
 AS
 BEGIN
     SET NOCOUNT ON;
-    IF EXISTS(SELECT 1 FROM usuario WHERE LOWER(dni) = LOWER(@dni) AND id_empresa = @id_empresa)
+    IF EXISTS(SELECT 1 FROM usuario WHERE dni = @dni AND id_empresa = @id_empresa)
     BEGIN
         SELECT 'true' AS 'verificar'
     END

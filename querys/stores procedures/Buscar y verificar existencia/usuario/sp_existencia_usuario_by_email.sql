@@ -5,7 +5,7 @@ CREATE OR ALTER PROCEDURE sp_existencia_usuario_by_email
 AS
 BEGIN
     SET NOCOUNT ON;
-    IF EXISTS(SELECT 1 FROM usuario WHERE LOWER(email) = LOWER(@email))
+    IF EXISTS(SELECT 1 FROM usuario WHERE email = @email)
     BEGIN
         SELECT 'true' AS 'verificar'
     END
@@ -15,7 +15,7 @@ BEGIN
     END
 END;
 
-EXEC sp_existencia_usuario_by_email @email = 'franklin@gmail.com';
+EXEC sp_existencia_usuario_by_email @email = 'frANklin@gmail.com';
 
 SELECT *
 FROM usuario;

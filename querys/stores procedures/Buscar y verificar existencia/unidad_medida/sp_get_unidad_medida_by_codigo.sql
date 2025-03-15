@@ -1,7 +1,7 @@
 
 
 
-CREATE OR ALTER PROCEDURE sp_get_almacen_by_codigo
+CREATE OR ALTER PROCEDURE sp_get_unidad_medida_by_codigo
     @codigo NVARCHAR(24),
     @id_empresa BIGINT
 AS
@@ -9,19 +9,16 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT
-        id_almacen,
+        id_unidad_medida,
         codigo,
         nombre,
-        departamento,
-        ciudad,
-        direccion,
         estado,
         id_empresa
-    FROM almacen
+    FROM unidad_medida
     WHERE codigo = @codigo AND id_empresa = @id_empresa;
 END;
 
-EXEC sp_get_almacen_by_codigo @codigo = 'SCR-TPR', @id_empresa = 1;
+EXEC sp_get_unidad_medida_by_codigo @codigo = 'SCR-TPR', @id_empresa = 1;
 
 SELECT *
-FROM almacen;
+FROM unidad_medida;

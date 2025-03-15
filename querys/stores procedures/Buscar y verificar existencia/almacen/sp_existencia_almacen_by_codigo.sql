@@ -6,7 +6,7 @@ CREATE OR ALTER PROCEDURE sp_existencia_almacen_by_codigo
 AS
 BEGIN
     SET NOCOUNT ON;
-    IF EXISTS(SELECT 1 FROM almacen WHERE LOWER(codigo) = LOWER(@codigo) AND id_empresa = @id_empresa)
+    IF EXISTS(SELECT 1 FROM almacen WHERE codigo = @codigo AND id_empresa = @id_empresa)
     BEGIN
         SELECT 'true' AS 'verificar'
     END

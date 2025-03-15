@@ -16,7 +16,7 @@ BEGIN
         id_sucursal,
         id_empresa
     FROM caja
-    WHERE LOWER(id_caja) = LOWER(@id_caja) and id_empresa = @id_empresa;
+    WHERE id_caja = @id_caja and id_empresa = @id_empresa;
 END;
 
 EXEC sp_get_caja_by_id @id_caja = 34, @id_empresa = 1;
