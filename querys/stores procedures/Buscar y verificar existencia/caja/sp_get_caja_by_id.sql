@@ -2,7 +2,8 @@
 
 
 CREATE OR ALTER PROCEDURE sp_get_caja_by_id
-    @id_caja BIGINT
+    @id_caja BIGINT,
+    @id_empresa BIGINT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -15,9 +16,9 @@ BEGIN
         id_sucursal,
         id_empresa
     FROM caja
-    WHERE LOWER(id_caja) = LOWER(@id_caja);
+    WHERE LOWER(id_caja) = LOWER(@id_caja) and id_empresa = @id_empresa;
 END;
 
-EXEC sp_get_caja_by_id @id_caja = 34;
+EXEC sp_get_caja_by_id @id_caja = 34, @id_empresa = 1;
 
 SELECT * FROM caja;
