@@ -12,6 +12,7 @@ BEGIN
         id_unidad_medida,
         codigo,
         nombre,
+        descripcion,
         estado,
         id_empresa
     FROM unidad_medida
