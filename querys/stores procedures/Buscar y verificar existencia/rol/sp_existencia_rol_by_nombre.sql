@@ -6,7 +6,7 @@ CREATE OR ALTER PROCEDURE sp_existencia_rol_by_nombre
 AS
 BEGIN
     SET NOCOUNT ON;
-    IF EXISTS(SELECT 1 FROM rol WHERE nombre = @nombre AND id_empresa = @id_empresa)
+    IF EXISTS(SELECT 1 FROM rol WHERE LOWER(nombre) = LOWER(@nombre) AND id_empresa = @id_empresa)
     BEGIN
         SELECT 'true' AS 'verificar'
     END
