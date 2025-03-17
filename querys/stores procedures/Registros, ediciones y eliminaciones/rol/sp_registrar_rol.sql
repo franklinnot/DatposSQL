@@ -40,11 +40,7 @@ BEGIN
         SET @nuevo_id = SCOPE_IDENTITY();  -- Obtener el ID generado para el rol
         
         -- Registrar los accesos asociados al rol
-        -- Nota: Aquí podría estar el problema si el SP espera un tipo de datos específico
-        INSERT INTO acceso_rol
-        (id_rol, id_acceso, id_empresa)
-        SELECT @nuevo_id, id_acceso, @id_empresa
-        FROM @accesosTable;
+        EXEC sp_registrar_accesos_rol @id_rol = @nuevo_id, @accesos = @accesosTable;
         
         -- Verificar que se hayan registrado los accesos
         IF NOT EXISTS (
