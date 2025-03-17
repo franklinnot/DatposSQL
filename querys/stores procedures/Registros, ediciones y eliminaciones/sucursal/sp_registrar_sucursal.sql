@@ -19,6 +19,16 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
+        -- Validar si el codigo ya existe
+        IF EXISTS (SELECT 1
+        FROM sucursal
+        WHERE codigo = @codigo and id_empresa = @id_empresa)
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Evitar duplicados
+            RETURN;
+        END;
+
         -- Obtener la cantidad de sucursales registradas y el límite
         SELECT
             @sucursales_registradas = ISNULL(sucursales_registradas, 0),

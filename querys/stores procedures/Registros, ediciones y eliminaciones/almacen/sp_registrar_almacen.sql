@@ -16,6 +16,16 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
         
+        -- Validar si el codigo ya existe
+        IF EXISTS (SELECT 1
+        FROM almacen
+        WHERE codigo = @codigo and id_empresa = @id_empresa)
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Evitar duplicados
+            RETURN;
+        END;
+
         INSERT INTO almacen (codigo, nombre, departamento, ciudad, direccion, estado, id_empresa)
         VALUES (@codigo, @nombre, @departamento, @ciudad, @direccion, 1, @id_empresa);
         

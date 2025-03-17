@@ -25,6 +25,16 @@ BEGIN
             BEGIN TRANSACTION;
         END
         
+        -- Validar si el rol ya existe
+        IF EXISTS (SELECT 1
+        FROM rol
+        WHERE nombre = @nombre and id_empresa = @id_empresa)
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Evitar duplicados
+            RETURN;
+        END;
+
         -- Convertir el JSON a una tabla
         INSERT INTO @accesosTable
         (id_acceso)
