@@ -14,7 +14,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     DECLARE @nuevo_id INT;
-    DECLARE @accesosTable TABLE (id_acceso BIGINT);
+    DECLARE @accesosTable ud_accesos_rol;
     -- Tabla temporal
     DECLARE @transactionCount INT = @@TRANCOUNT;
     -- Guarda el conteo actual de transacciones
@@ -40,7 +40,7 @@ BEGIN
         SET @nuevo_id = SCOPE_IDENTITY();  -- Obtener el ID generado para el rol
         
         -- Registrar los accesos asociados al rol
-        EXEC sp_registrar_accesos_rol @id_rol = @nuevo_id, @accesos = @accesosTable;
+        EXEC sp_registrar_accesos_rol @id_rol = @nuevo_id, @id_empresa = @id_empresa, @accesos = @accesosTable;
         
         -- Verificar que se hayan registrado los accesos
         IF NOT EXISTS (
