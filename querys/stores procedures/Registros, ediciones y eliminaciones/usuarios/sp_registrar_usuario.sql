@@ -1,5 +1,17 @@
 
 
+-- Objeto de tipo tabla usado para registros masivos
+-- CREATE TYPE ud_usuarios_almacen AS TABLE (
+--     id_almacen BIGINT
+-- );
+
+-- CREATE TYPE ud_usuarios_sucursal AS TABLE (
+--     id_sucursal BIGINT
+-- );
+
+
+GO
+
 CREATE OR ALTER PROCEDURE sp_registrar_usuario
     @dni CHAR(8),
     @nombre NVARCHAR(255),
@@ -31,18 +43,36 @@ BEGIN
             -- Detener la ejecución
             RETURN;
         END;
-
-
-        -- Validar si el usuario ya existe por Email
+        
+        -- Validar si el usuario ya existe por dni y empresa
         IF EXISTS (SELECT 1
         FROM usuario
-        WHERE email = @email)
-                BEGIN
+        WHERE dni = @dni and id_empresa = @id_empresa)
+        BEGIN
             ROLLBACK TRANSACTION;
             -- Evitar duplicados
             RETURN;
         END;
 
+        -- Validar si el usuario en la bd ya existe por Email
+        IF EXISTS (SELECT 1
+        FROM usuario
+        WHERE email = @email)
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Evitar duplicados
+            RETURN;
+        END;
+
+        -- Validar el estado del rol
+        IF NOT EXISTS (SELECT 1
+        FROM rol
+        WHERE id_rol = @id_rol AND id_empresa = @id_empresa and estado != '1')
+        BEGIN
+            ROLLBACK TRANSACTION;
+            -- Evitar duplicados
+            RETURN;
+        END;
 
         -- Insertar el nuevo usuario
         INSERT INTO usuario 
