@@ -1,6 +1,5 @@
 
 
-
--- nombre
-CREATE INDEX idx_rol_nombre
-ON rol (nombre);
+-- codigo
+CREATE INDEX idx_rol_codigo
+ON rol (codigo);
