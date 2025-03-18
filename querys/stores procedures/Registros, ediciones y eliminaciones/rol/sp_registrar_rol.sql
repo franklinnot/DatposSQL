@@ -6,7 +6,9 @@
 
 
 CREATE OR ALTER PROCEDURE sp_registrar_rol
+    @codigo NVARCHAR(24),
     @nombre NVARCHAR(64),
+    @descripcion NVARCHAR(255),
     @accesos NVARCHAR(MAX),
     -- Se espera un JSON con un arreglo de objetos que contengan "id_acceso"
     @id_empresa BIGINT
@@ -28,7 +30,7 @@ BEGIN
         -- Validar si el rol ya existe
         IF EXISTS (SELECT 1
         FROM rol
-        WHERE nombre = @nombre and id_empresa = @id_empresa)
+        WHERE codigo = @codigo and id_empresa = @id_empresa)
         BEGIN
             ROLLBACK TRANSACTION;
             -- Evitar duplicados
@@ -44,8 +46,8 @@ BEGIN
         
         -- Insertar el nuevo rol
         INSERT INTO rol
-        (nombre, estado, id_empresa)
-        VALUES (@nombre, 1, @id_empresa);
+        (codigo, nombre, descripcion, estado, id_empresa)
+        VALUES (@codigo, @nombre, @descripcion, 1, @id_empresa);
         
         SET @nuevo_id = SCOPE_IDENTITY();  -- Obtener el ID generado para el rol
         
