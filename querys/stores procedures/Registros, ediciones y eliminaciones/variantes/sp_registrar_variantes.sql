@@ -18,18 +18,20 @@ CREATE OR ALTER PROCEDURE sp_registrar_variantes
 AS
 BEGIN
     SET NOCOUNT ON;
-    
+
     DECLARE @nuevo_id INT;
-    DECLARE @variantTable TABLE (variante NVARCHAR(128), detalles NVARCHAR(MAX));
+    DECLARE @variantTable TABLE (variante NVARCHAR(128),
+        detalles NVARCHAR(MAX));
     DECLARE @detailTable TABLE (nombre NVARCHAR(128));
-    
+
     BEGIN TRY
-        BEGIN TRANSACTION;
+        -- No se inicia una nueva transacción, se asume que ya está en una transacción activa
         
         -- Convertir el JSON de variantes a una tabla
-        INSERT INTO @variantTable (variante, detalles)
-        SELECT variante, detalles
-        FROM OPENJSON(@variantes)
+        INSERT INTO @variantTable
+        (variante, detalles)
+    SELECT variante, detalles
+    FROM OPENJSON(@variantes)
         WITH (
             variante NVARCHAR(128) '$.variante',
             detalles NVARCHAR(MAX) AS JSON
@@ -40,7 +42,7 @@ BEGIN
 
         DECLARE variant_cursor CURSOR FOR
         SELECT variante, detalles
-        FROM @variantTable;
+    FROM @variantTable;
 
         OPEN variant_cursor;
 
@@ -48,42 +50,45 @@ BEGIN
 
         WHILE @@FETCH_STATUS = 0
         BEGIN
-            -- Insertar el nuevo variante
-            INSERT INTO variante (nombre, estado, id_producto, id_empresa)
-            VALUES (@variante, 1, @id_producto, @id_empresa);
+        -- Insertar el nuevo variante
+        INSERT INTO variante
+            (nombre, estado, id_producto, id_empresa)
+        VALUES
+            (@variante, 1, @id_producto, @id_empresa);
 
-            SET @nuevo_id = SCOPE_IDENTITY();
+        SET @nuevo_id = SCOPE_IDENTITY();
 
-            -- Convertir el JSON de detalles a una tabla
-            INSERT INTO @detailTable (nombre)
-            SELECT detalle
-            FROM OPENJSON(@detalles)
+        -- Convertir el JSON de detalles a una tabla
+        INSERT INTO @detailTable
+            (nombre)
+        SELECT detalle
+        FROM OPENJSON(@detalles)
             WITH (detalle NVARCHAR(128) '$.detalle');
 
-            -- Insertar los detalles del variante
-            INSERT INTO detalle_variante (nombre, estado, id_variante, id_empresa)
-            SELECT nombre, 1, @nuevo_id, @id_empresa
-            FROM @detailTable;
+        -- Insertar los detalles del variante
+        INSERT INTO detalle_variante
+            (nombre, estado, id_variante, id_empresa)
+        SELECT nombre, 1, @nuevo_id, @id_empresa
+        FROM @detailTable;
 
-            -- Limpiar la tabla temporal de detalles
-            DELETE FROM @detailTable;
+        -- Limpiar la tabla temporal de detalles
+        DELETE FROM @detailTable;
 
-            FETCH NEXT FROM variant_cursor INTO @variante, @detalles;
-        END
+        FETCH NEXT FROM variant_cursor INTO @variante, @detalles;
+    END
 
         CLOSE variant_cursor;
         DEALLOCATE variant_cursor;
         
-        COMMIT TRANSACTION;
+        -- Se confía en el procedimiento externo para el COMMIT
     END TRY
     BEGIN CATCH
-        ROLLBACK TRANSACTION;
+        -- Se propaga el error para que lo gestione el procedimiento externo
         THROW;
     END CATCH;
 END;
-
-
 GO
+
 
 
 -- -- Ejecutar el procedimiento almacenado

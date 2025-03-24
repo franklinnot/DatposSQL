@@ -41,3 +41,5 @@ WHERE TABLE_NAME = 'variante';
 SELECT '''' + COLUMN_NAME + '''' + ',' AS COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'detalle_variante';
+
+select * from producto;
