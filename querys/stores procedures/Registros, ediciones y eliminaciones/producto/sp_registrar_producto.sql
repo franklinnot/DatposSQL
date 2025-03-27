@@ -5,7 +5,6 @@ CREATE OR ALTER PROCEDURE sp_registrar_producto
     @imagen NVARCHAR(MAX) = NULL,
     @stock_minimo INTEGER = NULL,
     @stock_maximo INTEGER = NULL,
-    @fecha_vencimiento DATE = NULL,
     @alerta_stock CHAR(1) = NULL,
     @alerta_vencimiento CHAR(1) = NULL,
     @tiene_igv CHAR(1),
@@ -35,7 +34,6 @@ BEGIN
         INSERT INTO producto
         (codigo, nombre, imagen,
         stock_minimo, stock_maximo,
-        fecha_vencimiento,
         alerta_stock, alerta_vencimiento,
         tiene_igv, isc,
         estado, id_familia,
@@ -44,7 +42,6 @@ BEGIN
         (
             @codigo, @nombre, @imagen,
             @stock_minimo, @stock_maximo,
-            @fecha_vencimiento,
             @alerta_stock, @alerta_vencimiento,
             @tiene_igv, @isc,
             1, @id_familia,

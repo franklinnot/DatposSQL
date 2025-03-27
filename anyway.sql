@@ -1,13 +1,7 @@
 
 
 
-delete from detalle_variante;
-delete from variante where id_producto = 11;
-delete from producto;
-
-
-select * from producto;
-select * from variante;
-select * from detalle_variante;
-
-select * from sucursal;
+-- columnas de una tabla
+SELECT  COLUMN_NAME AS columna
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'producto';
