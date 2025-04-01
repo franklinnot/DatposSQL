@@ -6,7 +6,6 @@ CREATE OR ALTER PROCEDURE sp_registrar_producto
     @stock_minimo INTEGER = NULL,
     @stock_maximo INTEGER = NULL,
     @alerta_stock CHAR(1) = NULL,
-    @alerta_vencimiento CHAR(1) = NULL,
     @tiene_igv CHAR(1),
     @isc FLOAT,
     @id_familia BIGINT,
@@ -34,7 +33,7 @@ BEGIN
         INSERT INTO producto
         (codigo, nombre, imagen,
         stock_minimo, stock_maximo,
-        alerta_stock, alerta_vencimiento,
+        alerta_stock,
         tiene_igv, isc,
         estado, id_familia,
         id_unidad_medida, id_empresa)
@@ -42,7 +41,7 @@ BEGIN
         (
             @codigo, @nombre, @imagen,
             @stock_minimo, @stock_maximo,
-            @alerta_stock, @alerta_vencimiento,
+            @alerta_stock,
             @tiene_igv, @isc,
             1, @id_familia,
             @id_unidad_medida, @id_empresa
