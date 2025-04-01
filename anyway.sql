@@ -8,6 +8,10 @@ SELECT '''' + COLUMN_NAME + '''' AS COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'operacion';
 
+SELECT '''' + COLUMN_NAME + '''' AS COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'detalle_operacion';
+
 /*
 Nueva Operación
 ruta: operation/new
@@ -40,5 +44,11 @@ Si el tipo de operación es 'OPV' y el numero es 11, el valor del campo codigo s
 'id_almacen_destino'
 'id_asociado': puede ser null
 'id_empresa'
+
+Detalle de la operación - Solo sugerirle aquellos productos cuyo estado 
+sea diferente de 0 y cuya familia sea de tipo 'Bien':
+
+'costo_unitario'
+'cantidad'
 
 */
