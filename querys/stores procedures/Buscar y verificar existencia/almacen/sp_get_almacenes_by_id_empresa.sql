@@ -9,13 +9,8 @@ BEGIN
 
     SELECT
         id_almacen,
-        codigo,
         nombre,
-        departamento,
-        ciudad,
-        direccion,
-        estado,
-        id_empresa
+        estado
     FROM almacen
     WHERE id_empresa = @id_empresa;
 END;

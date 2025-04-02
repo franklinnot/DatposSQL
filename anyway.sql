@@ -51,4 +51,15 @@ sea diferente de 0 y cuya familia sea de tipo 'Bien':
 'costo_unitario'
 'cantidad'
 
+tipo operacion
+almacen origen
+almacen destino
+asociado
+----
+detalle:
+cantidad y costo unitario
+
 */
+
+select * from operacion;
+
