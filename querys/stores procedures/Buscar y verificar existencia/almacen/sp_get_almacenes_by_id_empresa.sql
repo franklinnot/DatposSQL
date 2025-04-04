@@ -12,7 +12,8 @@ BEGIN
         nombre,
         estado
     FROM almacen
-    WHERE id_empresa = @id_empresa;
+    WHERE id_empresa = @id_empresa
+    ORDER BY nombre;
 END;
 
 EXEC sp_get_almacenes_by_id_empresa @id_empresa = 1;

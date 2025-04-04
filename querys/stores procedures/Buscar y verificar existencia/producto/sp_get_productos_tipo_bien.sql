@@ -10,7 +10,8 @@ BEGIN
     FROM producto p
     INNER JOIN familia f ON p.id_familia = f.id_familia
     INNER JOIN tipo_producto tp ON f.id_tipo_producto = tp.id_tipo_producto
-    WHERE p.id_empresa = @id_empresa and tp.nombre = 'Bien';
+    WHERE p.id_empresa = @id_empresa and tp.nombre = 'Bien'
+    ORDER BY p.nombre;
 END;
 
 
