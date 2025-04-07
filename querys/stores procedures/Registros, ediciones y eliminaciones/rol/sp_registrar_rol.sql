@@ -15,7 +15,7 @@ CREATE OR ALTER PROCEDURE sp_registrar_rol
 AS
 BEGIN
     SET NOCOUNT ON;
-    DECLARE @nuevo_id INT;
+    DECLARE @nuevo_id BIGINT;
     DECLARE @accesosTable ud_accesos_rol;
     -- Tabla temporal
     DECLARE @transactionCount INT = @@TRANCOUNT;

@@ -25,7 +25,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @nuevo_id INT;
+    DECLARE @nuevo_id BIGINT;
     DECLARE @usuarios_registrados INT, @cantidad_usuarios INT;
     -- Tablas temporales
     DECLARE @almacenesTable ud_usuarios_almacen;

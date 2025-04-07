@@ -11,7 +11,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     
-    DECLARE @nuevo_id INT;
+    DECLARE @nuevo_id BIGINT;
     
     BEGIN TRY
         BEGIN TRANSACTION;

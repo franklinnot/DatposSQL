@@ -14,7 +14,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @nuevo_id INT;
+    DECLARE @nuevo_id BIGINT;
     DECLARE @sucursales_registradas INT, @cantidad_sucursales INT;
     BEGIN TRY
         BEGIN TRANSACTION;

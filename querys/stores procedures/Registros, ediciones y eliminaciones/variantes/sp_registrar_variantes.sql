@@ -19,7 +19,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @nuevo_id INT;
+    DECLARE @nuevo_id BIGINT;
     DECLARE @variantTable TABLE (variante NVARCHAR(128),
         detalles NVARCHAR(MAX));
     DECLARE @detailTable TABLE (nombre NVARCHAR(128));
